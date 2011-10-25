@@ -1,0 +1,1 @@
+This is the source code to generate the [zozi blog](devblog.zozi.com) via Jekyll.
