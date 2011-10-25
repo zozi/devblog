@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+    <title>User Obsessed: On building software for people</title>
+
+    <script type="text/javascript" src="http://use.typekit.com/jjw2jrj.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <link type="text/css" rel="stylesheet" href="/stylesheets/reset.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/screen.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/code.css">
+    <link rel="alternate" type="application/atom+xml"
+      title="User Obsessed Feed" href="http://feeds.feedburner.com/userobsessed" />
+
+    <link rel="apple-touch-icon" href="/images/iOS-114.png" />
+    <link rel="apple-touch-icon-precomposed" href="/images/iOS-57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" media="screen and (resolution: 132dpi)" href="/images/iOS-72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" media="screen and (resolution: 326dpi)" href="/images/iOS-114.png" />
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+
+  </head>
+  <body class="default">
+
+    <section id="main">
+
+      <section id="masthead" class="group">
+        <header class="group">
+          <p><a href="/">User<br>Obsessed</a></p>
+          <h1>On building software for people</h1>
+          <img src="/images/uo-logo.png">
+        </header>
+      </section>
+
+      <section id="focus" class="group">
+
+        <section id="content" class="group">
+          <section id="posts">
+  <ol>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/master-your-tools/2011/05/12/what-s-new-in-ruby-on-rails-3-1/">What's new in Ruby on Rails 3.1</a></h2>
+  </header>
+  
+    <p>In case you haven&rsquo;t heard, Rails 3.1 is right around the corner. I&rsquo;m very excited for the built-in asset packaging and rendering engines for Javascript and CSS templates. The patterns they are recommending will help keep my static assets more organized without hurting client-side performance. <a href="http://www.railscasts.com">Ryan Bates (of Railscasts fame)</a> has put together <a href="https://gist.github.com/958283">a list of all the changes</a> coming in the next release of Rails. Along with the asset changes, Rails 3.1 sees built-in role support for ActiveRecord models to improve your app&rsquo;s security, jQuery as the default Javascript framework and much more. If you&rsquo;re interested in seeing it in action watch <a href="http://railscasts.com/episodes/265-rails-3-1-overview">Ryan&rsquo;s Rails 3.1 overview screencast</a>. With this release, the Rails team has proven they want to stay ahead of the curve. My hope is that it will help us deliver more robust software faster.</p>
+
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-05-12T07:42:00-07:00">Thursday, May 12</time>
+      
+        <a class="icon" href="https://gist.github.com/958283" title="What's new in Ruby on Rails 3.1" rel="external">Source</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/tips-and-tricks/2011/05/10/copy-and-paste-in-vim/">Pasting in terminal Vim</a></h2>
+  </header>
+  
+    <p><ins datetime="2011-05-10T01:59:00-05:00">
+UPDATE: There is great discussion going on about pasting in Vim on Hacker News. <a href="http://news.ycombinator.com/item?id=2532350">Join the conversation</a> if you have questions or thoughts.
+</ins></p>
+
+<p>I like using Vim <del datetime="2011-05-10T10:32:00-05:00">on the command line</del> <ins datetime="2011-05-10T10:32:00-05:00">in a terminal emulator</ins><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> rather than through a GUI. I&rsquo;m a fairly distracted person, and I&rsquo;ve found that a strong single-tasking workflow helps me stay focused. Most of my day is spent in one terminal window with one browser window open.</p>
+
+<h3 id="the-problem">The problem</h3>
+
+<p>Unfortunately, pasting in <del datetime="2011-05-10T10:32:00-05:00">command-line</del> <ins datetime="2011-05-10T10:32:00-05:00">terminal</ins> Vim sucks. When I paste a nicely formatted block of Ruby code I end up with something like this:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">add_task_address</span><span class="o">=&lt;</span><span class="no">YOUR</span> <span class="no">TODO</span> <span class="no">APP</span> <span class="no">EMAIL</span> <span class="no">ADDRESS</span><span class="o">&gt;</span>
+    <span class="n">task</span><span class="o">=</span><span class="vg">$*</span>
+
+    <span class="k">if</span> <span class="o">[</span> <span class="vg">$task</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+      <span class="c1"># Send email with task as subject</span>
+      <span class="n">echo</span> <span class="s2">&quot;&quot;</span> <span class="o">|</span> <span class="n">mail</span> <span class="o">-</span><span class="n">s</span> <span class="vg">$task</span> <span class="vg">$add_task_address</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="vg">$?</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="n">echo</span> <span class="s2">&quot;Successfully added task </span><span class="se">\&quot;</span><span class="s2">$task</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+              <span class="n">fi</span>
+              <span class="k">else</span>
+                <span class="n">mail</span> <span class="o">-</span><span class="n">s</span> <span class="s2">&quot;Inbox&quot;</span> <span class="vg">$import_tasks_address</span>
+                <span class="n">fi</span>
+</code></pre>
+</div>
+
+<p>Vim can&rsquo;t determine the difference between normal keystrokes and pasted text. Therefore, certain character combinations could execute commands instead of showing up as text (GUI Vim implementations such as MacVim understand the difference). The solution is easy: tell Vim that you&rsquo;re about to paste, paste, then tell Vim you&rsquo;re done.</p>
+
+<div class="highlight"><pre><code class="vim">    <span class="p">&lt;</span>ESC<span class="p">&gt;</span>
+    :<span class="k">set</span> <span class="nb">paste</span>
+    i <span class="p">&lt;</span>D<span class="p">-</span>V<span class="p">&gt;</span> <span class="c">&quot; Command + v</span>
+    <span class="p">&lt;</span>ESC<span class="p">&gt;</span>
+    :<span class="k">set</span> <span class="nb">nopaste</span>
+    i
+</code></pre>
+</div>
+
+<h3 id="the-solution">The solution</h3>
+
+<p>This works, but if you do much pasting it gets old fast. To automate this, I created a command to do it all for me:</p>
+
+<div class="highlight"><pre><code class="vim">    <span class="p">&lt;</span>C<span class="p">-</span>O<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">paste</span><span class="p">&lt;</span>CR<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">r</span><span class="p">&gt;</span>*<span class="p">&lt;</span>C<span class="p">-</span>O<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">nopaste</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p>And then mapped it to <code>&lt;Leader&gt;v</code> in insert mode:</p>
+
+<div class="highlight"><pre><code class="vim">    imap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>v  <span class="p">&lt;</span>C<span class="p">-</span>O<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">paste</span><span class="p">&lt;</span>CR<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">r</span><span class="p">&gt;</span>*<span class="p">&lt;</span>C<span class="p">-</span>O<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">nopaste</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p><abbr title="Note well">N.B.</abbr> this command only works in Vim 7.3 or later. It&rsquo;s written for insert mode, but it shouldn&rsquo;t be hard to create a normal mode command that works in a similar manner.</p>
+
+<h3 id="want-to-know-how-it-works">Want to know how it works?</h3>
+
+<p>That should give you a good excuse to get familiar with Vim&rsquo;s <a href="http://vimdoc.sourceforge.net/htmldoc/help.html"><code>:help</code></a> command or <a href="http://bit.ly/lnA8oD">practice Googling</a>. Everything in this command is native, documented Vim. Have fun!</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Updated to clarify what I mean by &ldquo;command-line&rdquo; Vim<a href="#fnref:1" rev="footnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-05-10T12:12:00-07:00">Tuesday, May 10</time>
+      
+      <a class="icon" href="http://www.instapaper.com/hello2?u=http%3A%2F%2Fuserobsessed.net%2Ftips-and-tricks%2F2011%2F05%2F10%2Fcopy-and-paste-in-vim%2F&amp;title=Pasting%20in%20terminal%20Vim" rel="alternate" title="Save to Instapaper">Read Later</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/tips-and-tricks/2011/05/04/rapid-feedback-regex-tester/">Rapid feedback regex tester</a></h2>
+  </header>
+  
+    <p>Speaking of web-based tools to help you develop faster, <a href="http://rubular.com/">Rubular</a> is a regex tester to help you build and test regular expressions without having to run your app. I use this when I&rsquo;m troubleshooting tricky regular expressions. The way it splits out capture groups is very nice. My only complaint is that I can only test against one string at a time. I&rsquo;d like to be able to put in a few test cases and see where it fails. Maybe I should write a test for that&hellip;</p>
+
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-05-04T02:53:00-07:00">Wednesday, May  4</time>
+      
+        <a class="icon" href="http://rubular.com/" title="Rapid feedback regex tester" rel="external">Source</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/tips-and-tricks/2011/05/03/strftime-never-look-up-a-date-format-string-again/">strftime - Never Look up a Date Format String Again</a></h2>
+  </header>
+  
+    <p><a href="http://strfti.me">strfti.me</a> is an excellent reference for anyone who has ever had to look up the syntax to date format strings in Ruby, PHP, C or Python. Bookmark this one!</p>
+
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-05-03T01:51:00-07:00">Tuesday, May  3</time>
+      
+        <a class="icon" href="http://strfti.me" title="strftime - Never Look up a Date Format String Again" rel="external">Source</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/user-experience/2011/04/25/rules-from-a-user-to-software-developers/">Rules from a User to Software Developers</a></h2>
+  </header>
+  
+    <p>Here are <a href="http://brooksreview.net/2011/04/rules/">some helpful guidelines</a> for developers when you need to make UI decisions. My advice: if you have access to (or can hire) a designer, then use them! If you don&rsquo;t (or can&rsquo;t), then please spend some time up front talking to your target demographic (or someone similar) about what you are building and how it will solve their problem. When you finish a feature, go back to them and have them try it. I promise, it will be well worth it.</p>
+
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-04-25T12:00:00-07:00">Monday, April 25</time>
+      
+        <a class="icon" href="http://brooksreview.net/2011/04/rules/" title="Rules from a User to Software Developers" rel="external">Source</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/process/2011/04/21/inception-deck/">The Inception Deck</a></h2>
+  </header>
+  
+    <p>Speaking of getting everyone on the same page, before you create a story map <a href="http://agilewarrior.wordpress.com/2010/11/06/the-agile-inception-deck/">the Inception Deck is a great tool</a> from ThoughtWorks for communicating high level goals without going into the nitty-gritty. Using this tool, you&rsquo;ll discuss what&rsquo;s in scope, what&rsquo;s <strong>not</strong> in scope, some technical architecture and more. I used this recently with a team and we found that everyone had a slightly unique take on the goals of the project. Now we all know what we&rsquo;re building and why.</p>
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-04-21T12:00:00-07:00">Thursday, April 21</time>
+      
+        <a class="icon" href="http://agilewarrior.wordpress.com/2010/11/06/the-agile-inception-deck/" title="The Inception Deck" rel="external">Source</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/process/2011/04/20/getting-on-the-same-page/">Getting on the Same Page</a></h2>
+  </header>
+  
+    <p>Jeff Patton shares his <a href="http://www.agileproductdesign.com/blog/the_new_backlog.html">process of brainstorming product features</a> and breaking them down into a backlog of cards. I&rsquo;ve used this a couple times and found great success with it. It&rsquo;s helped me better understand the problem I&rsquo;m trying to solve and helped us stay on the same page, without going too far into technical details.</p>
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-04-20T12:00:00-07:00">Wednesday, April 20</time>
+      
+        <a class="icon" href="http://www.agileproductdesign.com/blog/the_new_backlog.html" title="Getting on the Same Page" rel="external">Source</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/productivity/2011/04/18/what-is-programmer-productivity/">What is Programmer Productivity?</a></h2>
+  </header>
+  
+    <p>Recently I started reflecting on some of the tools, workflows and processes I use and whether or not they are actually helping me be more productive. But how do I know if they are making me more productive? We need to go deeper.</p>
+
+<blockquote>
+  <p>Productivity = Value / Time
+(productivity equals value divided by time)</p>
+
+  <p>By this definition there are two primary ways of increasing productivity:</p>
+
+  <ol>
+    <li>Increase the value created</li>
+    <li>Decrease the time required to create that value</li>
+  </ol>
+
+  <p><a href="http://www.stevepavlina.com/blog/2005/10/what-is-productivity/">- <cite>What is productivity?</cite></a></p>
+</blockquote>
+
+<p>Decreasing time is pretty obvious, but value is subjective. What is value for a programmer? The most obvious definition is &ldquo;the number of features completed over time&rdquo;. But when is a feature complete? When the tests pass? Sure, it&rsquo;s working, but how do you know you solved the problem correctly (or solved the correct problem)? The feature isn&rsquo;t done until the user tries it and says their problem is solved. Therefore, programmer productivity means solving the most problems to your user&rsquo;s satisfaction.</p>
+
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-04-18T02:00:00-07:00">Monday, April 18</time>
+      
+      <a class="icon" href="http://www.instapaper.com/hello2?u=http%3A%2F%2Fuserobsessed.net%2Fproductivity%2F2011%2F04%2F18%2Fwhat-is-programmer-productivity%2F&amp;title=What%20is%20Programmer%20Productivity%3F" rel="alternate" title="Save to Instapaper">Read Later</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/productivity/2011/04/17/do-i-have-to-use-coffeescript/">Do I have to use CoffeeScript?</a></h2>
+  </header>
+  
+    <blockquote>
+  <p>Rails is going to force you to use coffeescript in an upcoming version and there&rsquo;s nothing you can do about it.</p>
+
+  <p>You have to learn coffeescript now.</p>
+
+  <p>It can&rsquo;t be removed.</p>
+
+  <p>You must rewrite all existing apps to use coffeescript if you want to upgrade.</p>
+</blockquote>
+
+<p><a href="http://replay.waybackmachine.org/20081227044036/http://ismerbrails.com/">In his usual style</a>, <a href="http://doihavetousecoffeescriptinrails.com/">Jason Seifer kindly asks us to quit fighting</a> about <a href="http://twitter.com/dhh/statuses/58207700672200704">CoffeeScript being integrated in Rails 3.1</a>. I was squarely in the anti-CoffeScript camp at first. My argument? It&rsquo;s just an abstraction on top of a language, and I&rsquo;d rather just use the language itself. But then <a href="http://twitter.com/joecannatti">Joe Cannatti</a> reminded me that Ruby is merely an abstraction on top of C and C is an abstraction on top of assembler. Thinking about all the goodness Ruby provides has made me excited to try CoffeeScript (I haven&rsquo;t yet, but will soon).</p>
+
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-04-17T12:00:00-07:00">Sunday, April 17</time>
+      
+        <a class="icon" href="http://doihavetousecoffeescriptinrails.com/" title="Do I have to use CoffeeScript?" rel="external">Source</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+    <li>
+      <article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/productivity/2011/04/15/rspec-rails-tests-without-rails/">Running RSpec Rails Tests - Without Rails</a></h2>
+  </header>
+  
+    <blockquote>
+  <p>The application was a little light on tests, so I asked the other developers why they are not writing more specs? The answer was all too familiar: &ldquo;it just takes forever to run them&rdquo;. Yup, Rails had to load up, schema needed to be verified, the entire universe had to be included and 30 seconds later our specs were executed.</p>
+</blockquote>
+
+<p>One of the largest pains when testing in Rails is the amount of time it takes to run tests. To be able to get a good flow going, test suites should run in <em>no more than 2 seconds</em>. However, when including Rails in your tests there&rsquo;s an automatic 7 second overhead while Rails loads. A few months ago <a href="http://www.adomokos.com">Attila Domokos</a> and I started finding some practices to be able to run RSpec tests without Rails. He has taken that further and <a href="http://www.adomokos.com/2011/04/running-rails-rspec-tests-without-rails.html">now runs 128 tests (including controllers and models) in less than 2 seconds</a>. Nice work Attila!</p>
+
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-04-15T12:00:00-07:00">Friday, April 15</time>
+      
+        <a class="icon" href="http://www.adomokos.com/2011/04/running-rails-rspec-tests-without-rails.html" title="Running RSpec Rails Tests - Without Rails" rel="external">Source</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+    </li>
+    
+  </ol>
+
+  
+  <nav id="pagination">
+    <ol>
+      
+      
+      <li>
+      
+      <li>
+        
+        
+          1
+        
+      </li>
+      
+      <li>
+        
+          
+        
+        
+          <a href="/page2">2</a>
+        
+      </li>
+      
+      
+      <li>
+        <a href="/page2" title="Go to next page">
+          &raquo;
+        </a>
+      </li>
+      
+    </ol>
+  </nav>
+  
+</section>
+
+        </section>
+
+        <section id="sidebar">
+
+          <section id="meta-col1" class="meta group">
+            <aside id="about">
+              <header>
+                <h3>About</h3>
+              </header>
+              <p>
+                User Obsessed is a blog that explores the role developers play in defining the way users experience software. <a href="/about">See more.</a>
+              </p>
+            </aside>
+
+            <aside>
+              <header>
+                <h3>Stay up to date</h3>
+              </header>
+              <nav>
+                <ul>
+                  <li class="icon rss"><a href="http://feeds.feedburner.com/userobsessed">RSS</a></li>
+                  <li class="icon twitter"><a href="http://twitter.com/userobsessed">Twitter</a></li>
+                  <li class="icon"><a href="/subscribe">More</a></li>
+                </ul>
+              </nav>
+            </aside>
+
+            <aside id="ads">
+            <p>
+              <a href="/reviews/2011/01/13/review-authoring-ebooks-by-jeremy-mcanally/">
+                <img src="/images/authoring-ebooks-ad.png">
+              </a>
+            </p>
+            </aside>
+
+          </section>
+
+          <section id="meta-col2" class="meta group">
+
+            <aside id="bio">
+              <header>
+                <h3>The Author</h3>
+              </header>
+              <p>
+              My name is Joe Fiorini. I am a web developer from Cleveland, Ohio. I work for <a href="http://leandog.com">LeanDog Software</a> where I build software using <a href="http://www.rubyonrails.org">Ruby on Rails</a>. <a href="/bio">See more.</a>
+              </p>
+            </aside>
+
+            <aside>
+              <nav id="extra">
+                <ul>
+                  <li><a href="/colophon">Colophon</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                </ul>
+              </nav>
+            </aside>
+
+          </section>
+
+        </section>
+
+      </section>
+
+      <section id="footer" class="group">
+        <footer class="group">
+          <nav id="site">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/subscribe">Subscribe</a></li>
+              <li><a href="/colophon">Colophon</a></li>
+            </ul>
+          </nav>
+          <p class="copyright">
+            &copy;2011 &ndash; Joe Fiorini
+          </p>
+        </footer>
+      </section>
+
+    </section>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-23094691-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+  </body>
+</html>

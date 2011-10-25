@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>User Obsessed</title>
+  <link href="http://userobsessed.net/feed.xml" rel="self" />
+  <link href="/feed.xml" />
+  <updated>2011-10-21T09:23:59-07:00</updated>
+  <id>http://userobsessed.net</id>
+  <author>
+    <name>Joe Fiorini</name>
+    <email>joe@userobsessed.net</email>
+  </author>
+  
+  <entry>
+    <title>What's new in Ruby on Rails 3.1</title>
+    <link href="http://userobsessed.net/master-your-tools/2011/05/12/what-s-new-in-ruby-on-rails-3-1/" />
+    <updated>2011-05-12T07:42:00-07:00</updated>
+    <id>http://userobsessed.net/master-your-tools/2011/05/12/what-s-new-in-ruby-on-rails-3-1</id>
+    <content type="html">
+      &lt;p&gt;In case you haven&amp;rsquo;t heard, Rails 3.1 is right around the corner. I&amp;rsquo;m very excited for the built-in asset packaging and rendering engines for Javascript and CSS templates. The patterns they are recommending will help keep my static assets more organized without hurting client-side performance. &lt;a href=&quot;http://www.railscasts.com&quot;&gt;Ryan Bates (of Railscasts fame)&lt;/a&gt; has put together &lt;a href=&quot;https://gist.github.com/958283&quot;&gt;a list of all the changes&lt;/a&gt; coming in the next release of Rails. Along with the asset changes, Rails 3.1 sees built-in role support for ActiveRecord models to improve your app&amp;rsquo;s security, jQuery as the default Javascript framework and much more. If you&amp;rsquo;re interested in seeing it in action watch &lt;a href=&quot;http://railscasts.com/episodes/265-rails-3-1-overview&quot;&gt;Ryan&amp;rsquo;s Rails 3.1 overview screencast&lt;/a&gt;. With this release, the Rails team has proven they want to stay ahead of the curve. My hope is that it will help us deliver more robust software faster.&lt;/p&gt;
+
+
+
+      
+        &lt;p&gt;&lt;a href='http://userobsessed.net/master-your-tools/2011/05/12/what-s-new-in-ruby-on-rails-3-1/'&gt; ☺ Source&lt;/a&gt;&lt;/p&gt;
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>Pasting in terminal Vim</title>
+    <link href="http://userobsessed.net/tips-and-tricks/2011/05/10/copy-and-paste-in-vim/" />
+    <updated>2011-05-10T00:12:00-07:00</updated>
+    <id>http://userobsessed.net/tips-and-tricks/2011/05/10/copy-and-paste-in-vim</id>
+    <content type="html">
+      &lt;p&gt;&lt;ins datetime=&quot;2011-05-10T01:59:00-05:00&quot;&gt;
+UPDATE: There is great discussion going on about pasting in Vim on Hacker News. &lt;a href=&quot;http://news.ycombinator.com/item?id=2532350&quot;&gt;Join the conversation&lt;/a&gt; if you have questions or thoughts.
+&lt;/ins&gt;&lt;/p&gt;
+
+&lt;p&gt;I like using Vim &lt;del datetime=&quot;2011-05-10T10:32:00-05:00&quot;&gt;on the command line&lt;/del&gt; &lt;ins datetime=&quot;2011-05-10T10:32:00-05:00&quot;&gt;in a terminal emulator&lt;/ins&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; rather than through a GUI. I&amp;rsquo;m a fairly distracted person, and I&amp;rsquo;ve found that a strong single-tasking workflow helps me stay focused. Most of my day is spent in one terminal window with one browser window open.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-problem&quot;&gt;The problem&lt;/h3&gt;
+
+&lt;p&gt;Unfortunately, pasting in &lt;del datetime=&quot;2011-05-10T10:32:00-05:00&quot;&gt;command-line&lt;/del&gt; &lt;ins datetime=&quot;2011-05-10T10:32:00-05:00&quot;&gt;terminal&lt;/ins&gt; Vim sucks. When I paste a nicely formatted block of Ruby code I end up with something like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;    &lt;span class=&quot;n&quot;&gt;add_task_address&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;YOUR&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TODO&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;APP&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;EMAIL&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ADDRESS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$*&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# Send email with task as subject&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mail&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$task&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$add_task_address&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Successfully added task &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;$task&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+              &lt;span class=&quot;n&quot;&gt;fi&lt;/span&gt;
+              &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;mail&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Inbox&amp;quot;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$import_tasks_address&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Vim can&amp;rsquo;t determine the difference between normal keystrokes and pasted text. Therefore, certain character combinations could execute commands instead of showing up as text (GUI Vim implementations such as MacVim understand the difference). The solution is easy: tell Vim that you&amp;rsquo;re about to paste, paste, then tell Vim you&amp;rsquo;re done.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;vim&quot;&gt;    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;ESC&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+    :&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;paste&lt;/span&gt;
+    i &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;D&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;V&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;&amp;quot; Command + v&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;ESC&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+    :&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nopaste&lt;/span&gt;
+    i
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;the-solution&quot;&gt;The solution&lt;/h3&gt;
+
+&lt;p&gt;This works, but if you do much pasting it gets old fast. To automate this, I created a command to do it all for me:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;vim&quot;&gt;    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;C&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;O&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;paste&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;C&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;*&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;C&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;O&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nopaste&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And then mapped it to &lt;code&gt;&amp;lt;Leader&amp;gt;v&lt;/code&gt; in insert mode:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;vim&quot;&gt;    imap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;Leader&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;v  &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;C&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;O&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;paste&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;C&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;*&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;C&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;O&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nopaste&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;abbr title=&quot;Note well&quot;&gt;N.B.&lt;/abbr&gt; this command only works in Vim 7.3 or later. It&amp;rsquo;s written for insert mode, but it shouldn&amp;rsquo;t be hard to create a normal mode command that works in a similar manner.&lt;/p&gt;
+
+&lt;h3 id=&quot;want-to-know-how-it-works&quot;&gt;Want to know how it works?&lt;/h3&gt;
+
+&lt;p&gt;That should give you a good excuse to get familiar with Vim&amp;rsquo;s &lt;a href=&quot;http://vimdoc.sourceforge.net/htmldoc/help.html&quot;&gt;&lt;code&gt;:help&lt;/code&gt;&lt;/a&gt; command or &lt;a href=&quot;http://bit.ly/lnA8oD&quot;&gt;practice Googling&lt;/a&gt;. Everything in this command is native, documented Vim. Have fun!&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Updated to clarify what I mean by &amp;ldquo;command-line&amp;rdquo; Vim&lt;a href=&quot;#fnref:1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+
+
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>Rapid feedback regex tester</title>
+    <link href="http://userobsessed.net/tips-and-tricks/2011/05/04/rapid-feedback-regex-tester/" />
+    <updated>2011-05-04T14:53:00-07:00</updated>
+    <id>http://userobsessed.net/tips-and-tricks/2011/05/04/rapid-feedback-regex-tester</id>
+    <content type="html">
+      &lt;p&gt;Speaking of web-based tools to help you develop faster, &lt;a href=&quot;http://rubular.com/&quot;&gt;Rubular&lt;/a&gt; is a regex tester to help you build and test regular expressions without having to run your app. I use this when I&amp;rsquo;m troubleshooting tricky regular expressions. The way it splits out capture groups is very nice. My only complaint is that I can only test against one string at a time. I&amp;rsquo;d like to be able to put in a few test cases and see where it fails. Maybe I should write a test for that&amp;hellip;&lt;/p&gt;
+
+
+
+      
+        &lt;p&gt;&lt;a href='http://userobsessed.net/tips-and-tricks/2011/05/04/rapid-feedback-regex-tester/'&gt; ☺ Source&lt;/a&gt;&lt;/p&gt;
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>strftime - Never Look up a Date Format String Again</title>
+    <link href="http://userobsessed.net/tips-and-tricks/2011/05/03/strftime-never-look-up-a-date-format-string-again/" />
+    <updated>2011-05-03T13:51:00-07:00</updated>
+    <id>http://userobsessed.net/tips-and-tricks/2011/05/03/strftime-never-look-up-a-date-format-string-again</id>
+    <content type="html">
+      &lt;p&gt;&lt;a href=&quot;http://strfti.me&quot;&gt;strfti.me&lt;/a&gt; is an excellent reference for anyone who has ever had to look up the syntax to date format strings in Ruby, PHP, C or Python. Bookmark this one!&lt;/p&gt;
+
+
+
+      
+        &lt;p&gt;&lt;a href='http://userobsessed.net/tips-and-tricks/2011/05/03/strftime-never-look-up-a-date-format-string-again/'&gt; ☺ Source&lt;/a&gt;&lt;/p&gt;
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>Rules from a User to Software Developers</title>
+    <link href="http://userobsessed.net/user-experience/2011/04/25/rules-from-a-user-to-software-developers/" />
+    <updated>2011-04-25T00:00:00-07:00</updated>
+    <id>http://userobsessed.net/user-experience/2011/04/25/rules-from-a-user-to-software-developers</id>
+    <content type="html">
+      &lt;p&gt;Here are &lt;a href=&quot;http://brooksreview.net/2011/04/rules/&quot;&gt;some helpful guidelines&lt;/a&gt; for developers when you need to make UI decisions. My advice: if you have access to (or can hire) a designer, then use them! If you don&amp;rsquo;t (or can&amp;rsquo;t), then please spend some time up front talking to your target demographic (or someone similar) about what you are building and how it will solve their problem. When you finish a feature, go back to them and have them try it. I promise, it will be well worth it.&lt;/p&gt;
+
+
+
+      
+        &lt;p&gt;&lt;a href='http://userobsessed.net/user-experience/2011/04/25/rules-from-a-user-to-software-developers/'&gt; ☺ Source&lt;/a&gt;&lt;/p&gt;
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>The Inception Deck</title>
+    <link href="http://userobsessed.net/process/2011/04/21/inception-deck/" />
+    <updated>2011-04-21T00:00:00-07:00</updated>
+    <id>http://userobsessed.net/process/2011/04/21/inception-deck</id>
+    <content type="html">
+      &lt;p&gt;Speaking of getting everyone on the same page, before you create a story map &lt;a href=&quot;http://agilewarrior.wordpress.com/2010/11/06/the-agile-inception-deck/&quot;&gt;the Inception Deck is a great tool&lt;/a&gt; from ThoughtWorks for communicating high level goals without going into the nitty-gritty. Using this tool, you&amp;rsquo;ll discuss what&amp;rsquo;s in scope, what&amp;rsquo;s &lt;strong&gt;not&lt;/strong&gt; in scope, some technical architecture and more. I used this recently with a team and we found that everyone had a slightly unique take on the goals of the project. Now we all know what we&amp;rsquo;re building and why.&lt;/p&gt;
+
+
+      
+        &lt;p&gt;&lt;a href='http://userobsessed.net/process/2011/04/21/inception-deck/'&gt; ☺ Source&lt;/a&gt;&lt;/p&gt;
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>Getting on the Same Page</title>
+    <link href="http://userobsessed.net/process/2011/04/20/getting-on-the-same-page/" />
+    <updated>2011-04-20T00:00:00-07:00</updated>
+    <id>http://userobsessed.net/process/2011/04/20/getting-on-the-same-page</id>
+    <content type="html">
+      &lt;p&gt;Jeff Patton shares his &lt;a href=&quot;http://www.agileproductdesign.com/blog/the_new_backlog.html&quot;&gt;process of brainstorming product features&lt;/a&gt; and breaking them down into a backlog of cards. I&amp;rsquo;ve used this a couple times and found great success with it. It&amp;rsquo;s helped me better understand the problem I&amp;rsquo;m trying to solve and helped us stay on the same page, without going too far into technical details.&lt;/p&gt;
+
+
+      
+        &lt;p&gt;&lt;a href='http://userobsessed.net/process/2011/04/20/getting-on-the-same-page/'&gt; ☺ Source&lt;/a&gt;&lt;/p&gt;
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>What is Programmer Productivity?</title>
+    <link href="http://userobsessed.net/productivity/2011/04/18/what-is-programmer-productivity/" />
+    <updated>2011-04-18T14:00:00-07:00</updated>
+    <id>http://userobsessed.net/productivity/2011/04/18/what-is-programmer-productivity</id>
+    <content type="html">
+      &lt;p&gt;Recently I started reflecting on some of the tools, workflows and processes I use and whether or not they are actually helping me be more productive. But how do I know if they are making me more productive? We need to go deeper.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Productivity = Value / Time
+(productivity equals value divided by time)&lt;/p&gt;
+
+  &lt;p&gt;By this definition there are two primary ways of increasing productivity:&lt;/p&gt;
+
+  &lt;ol&gt;
+    &lt;li&gt;Increase the value created&lt;/li&gt;
+    &lt;li&gt;Decrease the time required to create that value&lt;/li&gt;
+  &lt;/ol&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.stevepavlina.com/blog/2005/10/what-is-productivity/&quot;&gt;- &lt;cite&gt;What is productivity?&lt;/cite&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Decreasing time is pretty obvious, but value is subjective. What is value for a programmer? The most obvious definition is &amp;ldquo;the number of features completed over time&amp;rdquo;. But when is a feature complete? When the tests pass? Sure, it&amp;rsquo;s working, but how do you know you solved the problem correctly (or solved the correct problem)? The feature isn&amp;rsquo;t done until the user tries it and says their problem is solved. Therefore, programmer productivity means solving the most problems to your user&amp;rsquo;s satisfaction.&lt;/p&gt;
+
+
+
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>Do I have to use CoffeeScript?</title>
+    <link href="http://userobsessed.net/productivity/2011/04/17/do-i-have-to-use-coffeescript/" />
+    <updated>2011-04-17T00:00:00-07:00</updated>
+    <id>http://userobsessed.net/productivity/2011/04/17/do-i-have-to-use-coffeescript</id>
+    <content type="html">
+      &lt;blockquote&gt;
+  &lt;p&gt;Rails is going to force you to use coffeescript in an upcoming version and there&amp;rsquo;s nothing you can do about it.&lt;/p&gt;
+
+  &lt;p&gt;You have to learn coffeescript now.&lt;/p&gt;
+
+  &lt;p&gt;It can&amp;rsquo;t be removed.&lt;/p&gt;
+
+  &lt;p&gt;You must rewrite all existing apps to use coffeescript if you want to upgrade.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://replay.waybackmachine.org/20081227044036/http://ismerbrails.com/&quot;&gt;In his usual style&lt;/a&gt;, &lt;a href=&quot;http://doihavetousecoffeescriptinrails.com/&quot;&gt;Jason Seifer kindly asks us to quit fighting&lt;/a&gt; about &lt;a href=&quot;http://twitter.com/dhh/statuses/58207700672200704&quot;&gt;CoffeeScript being integrated in Rails 3.1&lt;/a&gt;. I was squarely in the anti-CoffeScript camp at first. My argument? It&amp;rsquo;s just an abstraction on top of a language, and I&amp;rsquo;d rather just use the language itself. But then &lt;a href=&quot;http://twitter.com/joecannatti&quot;&gt;Joe Cannatti&lt;/a&gt; reminded me that Ruby is merely an abstraction on top of C and C is an abstraction on top of assembler. Thinking about all the goodness Ruby provides has made me excited to try CoffeeScript (I haven&amp;rsquo;t yet, but will soon).&lt;/p&gt;
+
+
+
+      
+        &lt;p&gt;&lt;a href='http://userobsessed.net/productivity/2011/04/17/do-i-have-to-use-coffeescript/'&gt; ☺ Source&lt;/a&gt;&lt;/p&gt;
+      
+    </content>
+  </entry>
+  
+  <entry>
+    <title>Running RSpec Rails Tests - Without Rails</title>
+    <link href="http://userobsessed.net/productivity/2011/04/15/rspec-rails-tests-without-rails/" />
+    <updated>2011-04-15T00:00:00-07:00</updated>
+    <id>http://userobsessed.net/productivity/2011/04/15/rspec-rails-tests-without-rails</id>
+    <content type="html">
+      &lt;blockquote&gt;
+  &lt;p&gt;The application was a little light on tests, so I asked the other developers why they are not writing more specs? The answer was all too familiar: &amp;ldquo;it just takes forever to run them&amp;rdquo;. Yup, Rails had to load up, schema needed to be verified, the entire universe had to be included and 30 seconds later our specs were executed.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;One of the largest pains when testing in Rails is the amount of time it takes to run tests. To be able to get a good flow going, test suites should run in &lt;em&gt;no more than 2 seconds&lt;/em&gt;. However, when including Rails in your tests there&amp;rsquo;s an automatic 7 second overhead while Rails loads. A few months ago &lt;a href=&quot;http://www.adomokos.com&quot;&gt;Attila Domokos&lt;/a&gt; and I started finding some practices to be able to run RSpec tests without Rails. He has taken that further and &lt;a href=&quot;http://www.adomokos.com/2011/04/running-rails-rspec-tests-without-rails.html&quot;&gt;now runs 128 tests (including controllers and models) in less than 2 seconds&lt;/a&gt;. Nice work Attila!&lt;/p&gt;
+
+
+
+      
+        &lt;p&gt;&lt;a href='http://userobsessed.net/productivity/2011/04/15/rspec-rails-tests-without-rails/'&gt; ☺ Source&lt;/a&gt;&lt;/p&gt;
+      
+    </content>
+  </entry>
+  
+</feed>
+

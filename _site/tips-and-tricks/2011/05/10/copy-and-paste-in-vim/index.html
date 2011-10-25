@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+    <title>Pasting in terminal Vim | User Obsessed: On building software for people</title>
+
+    <script type="text/javascript" src="http://use.typekit.com/jjw2jrj.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <link type="text/css" rel="stylesheet" href="/stylesheets/reset.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/screen.css">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/code.css">
+    <link rel="alternate" type="application/atom+xml"
+      title="User Obsessed Feed" href="http://feeds.feedburner.com/userobsessed" />
+
+    <link rel="apple-touch-icon" href="/images/iOS-114.png" />
+    <link rel="apple-touch-icon-precomposed" href="/images/iOS-57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" media="screen and (resolution: 132dpi)" href="/images/iOS-72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" media="screen and (resolution: 326dpi)" href="/images/iOS-114.png" />
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+
+  </head>
+  <body class="default">
+
+    <section id="main">
+
+      <section id="masthead" class="group">
+        <header class="group">
+          <p><a href="/">User<br>Obsessed</a></p>
+          <h1>On building software for people</h1>
+          <img src="/images/uo-logo.png">
+        </header>
+      </section>
+
+      <section id="focus" class="group">
+
+        <section id="content" class="group">
+          
+
+<article class="instapaper_body">
+  <header>
+    <h2 class="instapaper_title"><a href="/tips-and-tricks/2011/05/10/copy-and-paste-in-vim/">Pasting in terminal Vim</a></h2>
+  </header>
+  
+    <p><ins datetime="2011-05-10T01:59:00-05:00">
+UPDATE: There is great discussion going on about pasting in Vim on Hacker News. <a href="http://news.ycombinator.com/item?id=2532350">Join the conversation</a> if you have questions or thoughts.
+</ins></p>
+
+<p>I like using Vim <del datetime="2011-05-10T10:32:00-05:00">on the command line</del> <ins datetime="2011-05-10T10:32:00-05:00">in a terminal emulator</ins><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> rather than through a GUI. I&rsquo;m a fairly distracted person, and I&rsquo;ve found that a strong single-tasking workflow helps me stay focused. Most of my day is spent in one terminal window with one browser window open.</p>
+
+<h3 id="the-problem">The problem</h3>
+
+<p>Unfortunately, pasting in <del datetime="2011-05-10T10:32:00-05:00">command-line</del> <ins datetime="2011-05-10T10:32:00-05:00">terminal</ins> Vim sucks. When I paste a nicely formatted block of Ruby code I end up with something like this:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">add_task_address</span><span class="o">=&lt;</span><span class="no">YOUR</span> <span class="no">TODO</span> <span class="no">APP</span> <span class="no">EMAIL</span> <span class="no">ADDRESS</span><span class="o">&gt;</span>
+    <span class="n">task</span><span class="o">=</span><span class="vg">$*</span>
+
+    <span class="k">if</span> <span class="o">[</span> <span class="vg">$task</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+      <span class="c1"># Send email with task as subject</span>
+      <span class="n">echo</span> <span class="s2">&quot;&quot;</span> <span class="o">|</span> <span class="n">mail</span> <span class="o">-</span><span class="n">s</span> <span class="vg">$task</span> <span class="vg">$add_task_address</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="vg">$?</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="n">echo</span> <span class="s2">&quot;Successfully added task </span><span class="se">\&quot;</span><span class="s2">$task</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+              <span class="n">fi</span>
+              <span class="k">else</span>
+                <span class="n">mail</span> <span class="o">-</span><span class="n">s</span> <span class="s2">&quot;Inbox&quot;</span> <span class="vg">$import_tasks_address</span>
+                <span class="n">fi</span>
+</code></pre>
+</div>
+
+<p>Vim can&rsquo;t determine the difference between normal keystrokes and pasted text. Therefore, certain character combinations could execute commands instead of showing up as text (GUI Vim implementations such as MacVim understand the difference). The solution is easy: tell Vim that you&rsquo;re about to paste, paste, then tell Vim you&rsquo;re done.</p>
+
+<div class="highlight"><pre><code class="vim">    <span class="p">&lt;</span>ESC<span class="p">&gt;</span>
+    :<span class="k">set</span> <span class="nb">paste</span>
+    i <span class="p">&lt;</span>D<span class="p">-</span>V<span class="p">&gt;</span> <span class="c">&quot; Command + v</span>
+    <span class="p">&lt;</span>ESC<span class="p">&gt;</span>
+    :<span class="k">set</span> <span class="nb">nopaste</span>
+    i
+</code></pre>
+</div>
+
+<h3 id="the-solution">The solution</h3>
+
+<p>This works, but if you do much pasting it gets old fast. To automate this, I created a command to do it all for me:</p>
+
+<div class="highlight"><pre><code class="vim">    <span class="p">&lt;</span>C<span class="p">-</span>O<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">paste</span><span class="p">&lt;</span>CR<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">r</span><span class="p">&gt;</span>*<span class="p">&lt;</span>C<span class="p">-</span>O<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">nopaste</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p>And then mapped it to <code>&lt;Leader&gt;v</code> in insert mode:</p>
+
+<div class="highlight"><pre><code class="vim">    imap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>v  <span class="p">&lt;</span>C<span class="p">-</span>O<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">paste</span><span class="p">&lt;</span>CR<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">r</span><span class="p">&gt;</span>*<span class="p">&lt;</span>C<span class="p">-</span>O<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">nopaste</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p><abbr title="Note well">N.B.</abbr> this command only works in Vim 7.3 or later. It&rsquo;s written for insert mode, but it shouldn&rsquo;t be hard to create a normal mode command that works in a similar manner.</p>
+
+<h3 id="want-to-know-how-it-works">Want to know how it works?</h3>
+
+<p>That should give you a good excuse to get familiar with Vim&rsquo;s <a href="http://vimdoc.sourceforge.net/htmldoc/help.html"><code>:help</code></a> command or <a href="http://bit.ly/lnA8oD">practice Googling</a>. Everything in this command is native, documented Vim. Have fun!</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Updated to clarify what I mean by &ldquo;command-line&rdquo; Vim<a href="#fnref:1" rev="footnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  
+  <footer class="group">
+    <p>
+      
+      
+      
+        
+      
+      <time pubdate datetime="2011-05-10T12:12:00-07:00">Tuesday, May 10</time>
+      
+      <a class="icon" href="http://www.instapaper.com/hello2?u=http%3A%2F%2Fuserobsessed.net%2Ftips-and-tricks%2F2011%2F05%2F10%2Fcopy-and-paste-in-vim%2F&amp;title=Pasting%20in%20terminal%20Vim" rel="alternate" title="Save to Instapaper">Read Later</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+
+        </section>
+
+        <section id="sidebar">
+
+          <section id="meta-col1" class="meta group">
+            <aside id="about">
+              <header>
+                <h3>About</h3>
+              </header>
+              <p>
+                User Obsessed is a blog that explores the role developers play in defining the way users experience software. <a href="/about">See more.</a>
+              </p>
+            </aside>
+
+            <aside>
+              <header>
+                <h3>Stay up to date</h3>
+              </header>
+              <nav>
+                <ul>
+                  <li class="icon rss"><a href="http://feeds.feedburner.com/userobsessed">RSS</a></li>
+                  <li class="icon twitter"><a href="http://twitter.com/userobsessed">Twitter</a></li>
+                  <li class="icon"><a href="/subscribe">More</a></li>
+                </ul>
+              </nav>
+            </aside>
+
+            <aside id="ads">
+            <p>
+              <a href="/reviews/2011/01/13/review-authoring-ebooks-by-jeremy-mcanally/">
+                <img src="/images/authoring-ebooks-ad.png">
+              </a>
+            </p>
+            </aside>
+
+          </section>
+
+          <section id="meta-col2" class="meta group">
+
+            <aside id="bio">
+              <header>
+                <h3>The Author</h3>
+              </header>
+              <p>
+              My name is Joe Fiorini. I am a web developer from Cleveland, Ohio. I work for <a href="http://leandog.com">LeanDog Software</a> where I build software using <a href="http://www.rubyonrails.org">Ruby on Rails</a>. <a href="/bio">See more.</a>
+              </p>
+            </aside>
+
+            <aside>
+              <nav id="extra">
+                <ul>
+                  <li><a href="/colophon">Colophon</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                </ul>
+              </nav>
+            </aside>
+
+          </section>
+
+        </section>
+
+      </section>
+
+      <section id="footer" class="group">
+        <footer class="group">
+          <nav id="site">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/subscribe">Subscribe</a></li>
+              <li><a href="/colophon">Colophon</a></li>
+            </ul>
+          </nav>
+          <p class="copyright">
+            &copy;2011 &ndash; Joe Fiorini
+          </p>
+        </footer>
+      </section>
+
+    </section>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-23094691-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+  </body>
+</html>
