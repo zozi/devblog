@@ -2,6 +2,8 @@ This is the source code to generate the [zozi dev blog](http://devblog.zozi.com)
 
 It uses the awesome git-powered blog system [Jekyll](http://jekyllrb.com/). 
 
+Following are instructions for creating new blog posts on your local machine (for the zozi dev team).
+
 Getting Started
 ---------------
 
