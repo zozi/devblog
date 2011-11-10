@@ -12,16 +12,13 @@ This is the first in a series, where I describe some common mistakes made when t
 ## Example 1 - _the team is using Pivotal Tracker as a to-do list_ 
 ### Typical Story
 
-> Add styling to product page.
-
+* Add styling to product page.
 
 In teams that have stories like this, there are probably a few others that look like:
 
-> Clicking on product title directs user to to product page
-
-> Product page shows detailed description and product specs
-
-> User clicks buy now button on product page
+* Clicking on product title directs user to to product page
+* Product page shows detailed description and product specs
+* User clicks buy now button on product page
     
 
 ## Example 2 - _all the business value attached to the wrong thing for the wrong role_
