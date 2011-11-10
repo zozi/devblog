@@ -1,6 +1,6 @@
 ---
 date: 2011-11-10 12:00 PM
-title: Story Ant-Patterns 1
+title: Story Anti-Patterns 1
 layout: post
 author: Matt Van Horn
 ---
@@ -10,25 +10,24 @@ This is the first in a series, where I describe some common mistakes made when t
 # Anti-Pattern 1 - Visual design isn't the whole story.
 
 ## Example 1 - _the team is using Pivotal Tracker as a to-do list_ 
-> ### Typical Story
->> Add styling to product page.
+### Typical Story
+Add styling to product page.
 
 
-> In teams that have stories like this, there are probably a few others that look like:
+In teams that have stories like this, there are probably a few others that look like:
 
->> Clicking on product title directs user to to product page
+Clicking on product title directs user to to product page
 
->> Product page shows detailed description and product specs
+Product page shows detailed description and product specs
 
->> User clicks buy now button on product page
+User clicks buy now button on product page
     
 
 ## Example 2 - _all the business value attached to the wrong thing for the wrong role_
-> ### Typical Story
->> As the designer  
->> I want a well-designed product page  
->> In order to encourage purchases  
-
+### Typical Story
+As the designer  
+I want a well-designed product page  
+In order to encourage purchases  
 
 Here, the team is trying to find the value, but they are looking in the wrong place for it.
 This is an example of thinking about "what do I want the user to do?" instead of "what does the user want to do?"
@@ -70,14 +69,14 @@ Story templates need to show three important things:
 
 The above story could become:
 
-> In order to _**more easily make a purchase decision**_  
-> _**the customer**_  
-> wants to see _**a well-designed product details page**_  
+In order to _**more easily make a purchase decision**_  
+_**the customer**_  
+wants to see _**a well-designed product details page**_  
 
-> Given an existing product named "Foo"  
-> When the customer visits the product page for "Foo"  
-> Then the customer should see the product details for "Foo"  
-> And the page should be styled according to the current design specifications for the product page  
+Given an existing product named "Foo"  
+When the customer visits the product page for "Foo"  
+Then the customer should see the product details for "Foo"  
+And the page should be styled according to the current design specifications for the product page  
 
 Notice that there are no implementation details exposed in the story or scenario. This prevents brittle tests.
 The feature is written from a user's point of view, and doesn't concern itself with what the developers consider details,
@@ -112,5 +111,4 @@ The UI design team should be an integral part of the development team, and shoul
 pairs can work on establishing what UI elements are needed for a given story, and can add chores to create the actual assets, while using
 placeholders in development. Programmer-Designer pairs can go from paper wireframes to HTML prototype to working application code, together.
 The agile principle of YAGNI will be critical to making this system work. Design development can also benefit from DRY thinking.
-
 
