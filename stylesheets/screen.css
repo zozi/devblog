@@ -9,7 +9,7 @@ ol li, ul li {
 }
 
 p+p, p+ol, p+ul {
-  margin-top: 0.7em;
+  margin-bottom: 0.5em;
 }
 
 a {
